@@ -18,30 +18,14 @@ class PublishResponse(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__body = None
             self.__type = None
             self.__subject = None
+            self.__body = None
         else:
-            self.set_body(params['body'] if 'body' in params.keys() else None)
             self.set_type(params['type'] if 'type' in params.keys() else None)
             self.set_subject(params['subject'] if 'subject' in params.keys() else None)
+            self.set_body(params['body'] if 'body' in params.keys() else None)
 
-
-    def get_body(self):
-        """
-        本文を取得
-        :return: 本文
-        :rtype: unicode
-        """
-        return self.__body
-
-    def set_body(self, body):
-        """
-        本文を設定
-        :param body: 本文
-        :type body: unicode
-        """
-        self.__body = body
 
     def get_type(self):
         """
@@ -75,9 +59,25 @@ class PublishResponse(object):
         """
         self.__subject = subject
 
+    def get_body(self):
+        """
+        本文を取得
+        :return: 本文
+        :rtype: unicode
+        """
+        return self.__body
+
+    def set_body(self, body):
+        """
+        本文を設定
+        :param body: 本文
+        :type body: unicode
+        """
+        self.__body = body
+
     def to_dict(self):
         return { 
-            "body": self.__body,
             "type": self.__type,
             "subject": self.__subject,
+            "body": self.__body,
         }

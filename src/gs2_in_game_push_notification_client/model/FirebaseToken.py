@@ -18,28 +18,12 @@ class FirebaseToken(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__token = None
             self.__user_id = None
+            self.__token = None
         else:
-            self.set_token(params['token'] if 'token' in params.keys() else None)
             self.set_user_id(params['userId'] if 'userId' in params.keys() else None)
+            self.set_token(params['token'] if 'token' in params.keys() else None)
 
-
-    def get_token(self):
-        """
-        トークンを取得
-        :return: トークン
-        :rtype: unicode
-        """
-        return self.__token
-
-    def set_token(self, token):
-        """
-        トークンを設定
-        :param token: トークン
-        :type token: unicode
-        """
-        self.__token = token
 
     def get_user_id(self):
         """
@@ -57,8 +41,24 @@ class FirebaseToken(object):
         """
         self.__user_id = user_id
 
+    def get_token(self):
+        """
+        トークンを取得
+        :return: トークン
+        :rtype: unicode
+        """
+        return self.__token
+
+    def set_token(self, token):
+        """
+        トークンを設定
+        :param token: トークン
+        :type token: unicode
+        """
+        self.__token = token
+
     def to_dict(self):
         return { 
-            "token": self.__token,
             "userId": self.__user_id,
+            "token": self.__token,
         }

@@ -33,17 +33,17 @@ class PublishRequest(Gs2BasicRequest):
         if params is None:
             self.__game_name = None
             self.__user_id = None
+            self.__subject = None
             self.__body = None
             self.__enable_offline_transfer = None
             self.__offline_transfer_sound = None
-            self.__subject = None
         else:
             self.set_game_name(params['gameName'] if 'gameName' in params.keys() else None)
             self.set_user_id(params['userId'] if 'userId' in params.keys() else None)
+            self.set_subject(params['subject'] if 'subject' in params.keys() else None)
             self.set_body(params['body'] if 'body' in params.keys() else None)
             self.set_enable_offline_transfer(params['enableOfflineTransfer'] if 'enableOfflineTransfer' in params.keys() else None)
             self.set_offline_transfer_sound(params['offlineTransferSound'] if 'offlineTransferSound' in params.keys() else None)
-            self.set_subject(params['subject'] if 'subject' in params.keys() else None)
 
     def get_game_name(self):
         """
@@ -97,6 +97,33 @@ class PublishRequest(Gs2BasicRequest):
         :rtype: PublishRequest
         """
         self.set_user_id(user_id)
+        return self
+
+    def get_subject(self):
+        """
+        件名を取得
+        :return: 件名
+        :rtype: unicode
+        """
+        return self.__subject
+
+    def set_subject(self, subject):
+        """
+        件名を設定
+        :param subject: 件名
+        :type subject: unicode
+        """
+        self.__subject = subject
+
+    def with_subject(self, subject):
+        """
+        件名を設定
+        :param subject: 件名
+        :type subject: unicode
+        :return: this
+        :rtype: PublishRequest
+        """
+        self.set_subject(subject)
         return self
 
     def get_body(self):
@@ -178,31 +205,4 @@ class PublishRequest(Gs2BasicRequest):
         :rtype: PublishRequest
         """
         self.set_offline_transfer_sound(offline_transfer_sound)
-        return self
-
-    def get_subject(self):
-        """
-        件名を取得
-        :return: 件名
-        :rtype: unicode
-        """
-        return self.__subject
-
-    def set_subject(self, subject):
-        """
-        件名を設定
-        :param subject: 件名
-        :type subject: unicode
-        """
-        self.__subject = subject
-
-    def with_subject(self, subject):
-        """
-        件名を設定
-        :param subject: 件名
-        :type subject: unicode
-        :return: this
-        :rtype: PublishRequest
-        """
-        self.set_subject(subject)
         return self

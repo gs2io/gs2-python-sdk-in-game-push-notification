@@ -56,11 +56,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.CreateCertificateRequest import CreateCertificateRequest
 
         from gs2_in_game_push_notification_client.control.CreateCertificateResult import CreateCertificateResult
         return CreateCertificateResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/certificate",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
             service=self.ENDPOINT,
             module=CreateCertificateRequest.Constant.MODULE,
             function=CreateCertificateRequest.Constant.FUNCTION,
@@ -103,19 +105,37 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         :rtype: gs2_in_game_push_notification_client.control.CreateGameResult.CreateGameResult
         """
         body = { 
-            "serviceClass": request.get_service_class(),
             "name": request.get_name(),
+            "serviceClass": request.get_service_class(),
             "offlineTransfer": request.get_offline_transfer(),
         }
 
-        if request.get_notification_firebase_server_key() is not None:
-            body["notificationFirebaseServerKey"] = request.get_notification_firebase_server_key()
-        if request.get_notification_url() is not None:
-            body["notificationUrl"] = request.get_notification_url()
         if request.get_description() is not None:
             body["description"] = request.get_description()
+        if request.get_notification_url() is not None:
+            body["notificationUrl"] = request.get_notification_url()
+        if request.get_notification_firebase_server_key() is not None:
+            body["notificationFirebaseServerKey"] = request.get_notification_firebase_server_key()
+        if request.get_create_certificate_trigger_script() is not None:
+            body["createCertificateTriggerScript"] = request.get_create_certificate_trigger_script()
+        if request.get_create_certificate_done_trigger_script() is not None:
+            body["createCertificateDoneTriggerScript"] = request.get_create_certificate_done_trigger_script()
+        if request.get_delete_certificate_trigger_script() is not None:
+            body["deleteCertificateTriggerScript"] = request.get_delete_certificate_trigger_script()
+        if request.get_delete_certificate_done_trigger_script() is not None:
+            body["deleteCertificateDoneTriggerScript"] = request.get_delete_certificate_done_trigger_script()
+        if request.get_publish_trigger_script() is not None:
+            body["publishTriggerScript"] = request.get_publish_trigger_script()
+        if request.get_publish_done_trigger_script() is not None:
+            body["publishDoneTriggerScript"] = request.get_publish_done_trigger_script()
+        if request.get_set_firebase_token_trigger_script() is not None:
+            body["setFirebaseTokenTriggerScript"] = request.get_set_firebase_token_trigger_script()
+        if request.get_set_firebase_token_done_trigger_script() is not None:
+            body["setFirebaseTokenDoneTriggerScript"] = request.get_set_firebase_token_done_trigger_script()
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.CreateGameRequest import CreateGameRequest
 
         from gs2_in_game_push_notification_client.control.CreateGameResult import CreateGameResult
@@ -147,10 +167,12 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DeleteCertificateRequest import DeleteCertificateRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/certificate",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
             service=self.ENDPOINT,
             module=DeleteCertificateRequest.Constant.MODULE,
             function=DeleteCertificateRequest.Constant.FUNCTION,
@@ -174,10 +196,12 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DeleteGameRequest import DeleteGameRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
             module=DeleteGameRequest.Constant.MODULE,
             function=DeleteGameRequest.Constant.FUNCTION,
@@ -206,6 +230,8 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DescribeGameRequest import DescribeGameRequest
 
         from gs2_in_game_push_notification_client.control.DescribeGameResult import DescribeGameResult
@@ -235,6 +261,8 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DescribeServiceClassRequest import DescribeServiceClassRequest
 
         from gs2_in_game_push_notification_client.control.DescribeServiceClassResult import DescribeServiceClassResult
@@ -268,11 +296,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DescribeStatusRequest import DescribeStatusRequest
 
         from gs2_in_game_push_notification_client.control.DescribeStatusResult import DescribeStatusResult
         return DescribeStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/user",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
             service=self.ENDPOINT,
             module=DescribeStatusRequest.Constant.MODULE,
             function=DescribeStatusRequest.Constant.FUNCTION,
@@ -297,11 +327,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.GetGameRequest import GetGameRequest
 
         from gs2_in_game_push_notification_client.control.GetGameResult import GetGameResult
         return GetGameResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
             module=GetGameRequest.Constant.MODULE,
             function=GetGameRequest.Constant.FUNCTION,
@@ -326,11 +358,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.GetGameStatusRequest import GetGameStatusRequest
 
         from gs2_in_game_push_notification_client.control.GetGameStatusResult import GetGameStatusResult
         return GetGameStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/status",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/status",
             service=self.ENDPOINT,
             module=GetGameStatusRequest.Constant.MODULE,
             function=GetGameStatusRequest.Constant.FUNCTION,
@@ -356,11 +390,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.GetMqttHostRequest import GetMqttHostRequest
 
         from gs2_in_game_push_notification_client.control.GetMqttHostResult import GetMqttHostResult
         return GetMqttHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/server/mqtt",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/mqtt",
             service=self.ENDPOINT,
             module=GetMqttHostRequest.Constant.MODULE,
             function=GetMqttHostRequest.Constant.FUNCTION,
@@ -386,11 +422,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.GetWebSocketHostRequest import GetWebSocketHostRequest
 
         from gs2_in_game_push_notification_client.control.GetWebSocketHostResult import GetWebSocketHostResult
         return GetWebSocketHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/server/webSocket",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/webSocket",
             service=self.ENDPOINT,
             module=GetWebSocketHostRequest.Constant.MODULE,
             function=GetWebSocketHostRequest.Constant.FUNCTION,
@@ -413,20 +451,22 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         :rtype: gs2_in_game_push_notification_client.control.PublishResult.PublishResult
         """
         body = { 
+            "subject": request.get_subject(),
             "body": request.get_body(),
             "enableOfflineTransfer": request.get_enable_offline_transfer(),
-            "subject": request.get_subject(),
         }
 
         if request.get_offline_transfer_sound() is not None:
             body["offlineTransferSound"] = request.get_offline_transfer_sound()
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.PublishRequest import PublishRequest
 
         from gs2_in_game_push_notification_client.control.PublishResult import PublishResult
         return PublishResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/user/" + str(("null" if request.get_user_id() is None else request.get_user_id())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user/" + str(("null" if request.get_user_id() is None or request.get_user_id() == "" else request.get_user_id())) + "",
             service=self.ENDPOINT,
             module=PublishRequest.Constant.MODULE,
             function=PublishRequest.Constant.FUNCTION,
@@ -454,11 +494,13 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest import SetFirebaseTokenRequest
 
         from gs2_in_game_push_notification_client.control.SetFirebaseTokenResult import SetFirebaseTokenResult
         return SetFirebaseTokenResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "/user",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
             service=self.ENDPOINT,
             module=SetFirebaseTokenRequest.Constant.MODULE,
             function=SetFirebaseTokenRequest.Constant.FUNCTION,
@@ -482,19 +524,37 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
             "offlineTransfer": request.get_offline_transfer(),
         }
 
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
         if request.get_notification_url() is not None:
             body["notificationUrl"] = request.get_notification_url()
         if request.get_notification_firebase_server_key() is not None:
             body["notificationFirebaseServerKey"] = request.get_notification_firebase_server_key()
-        if request.get_description() is not None:
-            body["description"] = request.get_description()
+        if request.get_create_certificate_trigger_script() is not None:
+            body["createCertificateTriggerScript"] = request.get_create_certificate_trigger_script()
+        if request.get_create_certificate_done_trigger_script() is not None:
+            body["createCertificateDoneTriggerScript"] = request.get_create_certificate_done_trigger_script()
+        if request.get_delete_certificate_trigger_script() is not None:
+            body["deleteCertificateTriggerScript"] = request.get_delete_certificate_trigger_script()
+        if request.get_delete_certificate_done_trigger_script() is not None:
+            body["deleteCertificateDoneTriggerScript"] = request.get_delete_certificate_done_trigger_script()
+        if request.get_publish_trigger_script() is not None:
+            body["publishTriggerScript"] = request.get_publish_trigger_script()
+        if request.get_publish_done_trigger_script() is not None:
+            body["publishDoneTriggerScript"] = request.get_publish_done_trigger_script()
+        if request.get_set_firebase_token_trigger_script() is not None:
+            body["setFirebaseTokenTriggerScript"] = request.get_set_firebase_token_trigger_script()
+        if request.get_set_firebase_token_done_trigger_script() is not None:
+            body["setFirebaseTokenDoneTriggerScript"] = request.get_set_firebase_token_done_trigger_script()
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.UpdateGameRequest import UpdateGameRequest
 
         from gs2_in_game_push_notification_client.control.UpdateGameResult import UpdateGameResult
         return UpdateGameResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
             module=UpdateGameRequest.Constant.MODULE,
             function=UpdateGameRequest.Constant.FUNCTION,

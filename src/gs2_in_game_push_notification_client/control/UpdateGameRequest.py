@@ -32,18 +32,34 @@ class UpdateGameRequest(Gs2BasicRequest):
         super(UpdateGameRequest, self).__init__(params)
         if params is None:
             self.__game_name = None
-            self.__notification_url = None
-            self.__service_class = None
-            self.__notification_firebase_server_key = None
-            self.__offline_transfer = None
             self.__description = None
+            self.__service_class = None
+            self.__offline_transfer = None
+            self.__notification_url = None
+            self.__notification_firebase_server_key = None
+            self.__create_certificate_trigger_script = None
+            self.__create_certificate_done_trigger_script = None
+            self.__delete_certificate_trigger_script = None
+            self.__delete_certificate_done_trigger_script = None
+            self.__publish_trigger_script = None
+            self.__publish_done_trigger_script = None
+            self.__set_firebase_token_trigger_script = None
+            self.__set_firebase_token_done_trigger_script = None
         else:
             self.set_game_name(params['gameName'] if 'gameName' in params.keys() else None)
-            self.set_notification_url(params['notificationUrl'] if 'notificationUrl' in params.keys() else None)
-            self.set_service_class(params['serviceClass'] if 'serviceClass' in params.keys() else None)
-            self.set_notification_firebase_server_key(params['notificationFirebaseServerKey'] if 'notificationFirebaseServerKey' in params.keys() else None)
-            self.set_offline_transfer(params['offlineTransfer'] if 'offlineTransfer' in params.keys() else None)
             self.set_description(params['description'] if 'description' in params.keys() else None)
+            self.set_service_class(params['serviceClass'] if 'serviceClass' in params.keys() else None)
+            self.set_offline_transfer(params['offlineTransfer'] if 'offlineTransfer' in params.keys() else None)
+            self.set_notification_url(params['notificationUrl'] if 'notificationUrl' in params.keys() else None)
+            self.set_notification_firebase_server_key(params['notificationFirebaseServerKey'] if 'notificationFirebaseServerKey' in params.keys() else None)
+            self.set_create_certificate_trigger_script(params['createCertificateTriggerScript'] if 'createCertificateTriggerScript' in params.keys() else None)
+            self.set_create_certificate_done_trigger_script(params['createCertificateDoneTriggerScript'] if 'createCertificateDoneTriggerScript' in params.keys() else None)
+            self.set_delete_certificate_trigger_script(params['deleteCertificateTriggerScript'] if 'deleteCertificateTriggerScript' in params.keys() else None)
+            self.set_delete_certificate_done_trigger_script(params['deleteCertificateDoneTriggerScript'] if 'deleteCertificateDoneTriggerScript' in params.keys() else None)
+            self.set_publish_trigger_script(params['publishTriggerScript'] if 'publishTriggerScript' in params.keys() else None)
+            self.set_publish_done_trigger_script(params['publishDoneTriggerScript'] if 'publishDoneTriggerScript' in params.keys() else None)
+            self.set_set_firebase_token_trigger_script(params['setFirebaseTokenTriggerScript'] if 'setFirebaseTokenTriggerScript' in params.keys() else None)
+            self.set_set_firebase_token_done_trigger_script(params['setFirebaseTokenDoneTriggerScript'] if 'setFirebaseTokenDoneTriggerScript' in params.keys() else None)
 
     def get_game_name(self):
         """
@@ -72,31 +88,31 @@ class UpdateGameRequest(Gs2BasicRequest):
         self.set_game_name(game_name)
         return self
 
-    def get_notification_url(self):
+    def get_description(self):
         """
-        オフライン転送先URLを取得
-        :return: オフライン転送先URL
+        説明文を取得
+        :return: 説明文
         :rtype: unicode
         """
-        return self.__notification_url
+        return self.__description
 
-    def set_notification_url(self, notification_url):
+    def set_description(self, description):
         """
-        オフライン転送先URLを設定
-        :param notification_url: オフライン転送先URL
-        :type notification_url: unicode
+        説明文を設定
+        :param description: 説明文
+        :type description: unicode
         """
-        self.__notification_url = notification_url
+        self.__description = description
 
-    def with_notification_url(self, notification_url):
+    def with_description(self, description):
         """
-        オフライン転送先URLを設定
-        :param notification_url: オフライン転送先URL
-        :type notification_url: unicode
+        説明文を設定
+        :param description: 説明文
+        :type description: unicode
         :return: this
         :rtype: UpdateGameRequest
         """
-        self.set_notification_url(notification_url)
+        self.set_description(description)
         return self
 
     def get_service_class(self):
@@ -126,33 +142,6 @@ class UpdateGameRequest(Gs2BasicRequest):
         self.set_service_class(service_class)
         return self
 
-    def get_notification_firebase_server_key(self):
-        """
-        Firebaseのサーバーキーを取得
-        :return: Firebaseのサーバーキー
-        :rtype: unicode
-        """
-        return self.__notification_firebase_server_key
-
-    def set_notification_firebase_server_key(self, notification_firebase_server_key):
-        """
-        Firebaseのサーバーキーを設定
-        :param notification_firebase_server_key: Firebaseのサーバーキー
-        :type notification_firebase_server_key: unicode
-        """
-        self.__notification_firebase_server_key = notification_firebase_server_key
-
-    def with_notification_firebase_server_key(self, notification_firebase_server_key):
-        """
-        Firebaseのサーバーキーを設定
-        :param notification_firebase_server_key: Firebaseのサーバーキー
-        :type notification_firebase_server_key: unicode
-        :return: this
-        :rtype: UpdateGameRequest
-        """
-        self.set_notification_firebase_server_key(notification_firebase_server_key)
-        return self
-
     def get_offline_transfer(self):
         """
         オフライン転送方式を取得
@@ -180,29 +169,272 @@ class UpdateGameRequest(Gs2BasicRequest):
         self.set_offline_transfer(offline_transfer)
         return self
 
-    def get_description(self):
+    def get_notification_url(self):
         """
-        説明文を取得
-        :return: 説明文
+        オフライン転送先URLを取得
+        :return: オフライン転送先URL
         :rtype: unicode
         """
-        return self.__description
+        return self.__notification_url
 
-    def set_description(self, description):
+    def set_notification_url(self, notification_url):
         """
-        説明文を設定
-        :param description: 説明文
-        :type description: unicode
+        オフライン転送先URLを設定
+        :param notification_url: オフライン転送先URL
+        :type notification_url: unicode
         """
-        self.__description = description
+        self.__notification_url = notification_url
 
-    def with_description(self, description):
+    def with_notification_url(self, notification_url):
         """
-        説明文を設定
-        :param description: 説明文
-        :type description: unicode
+        オフライン転送先URLを設定
+        :param notification_url: オフライン転送先URL
+        :type notification_url: unicode
         :return: this
         :rtype: UpdateGameRequest
         """
-        self.set_description(description)
+        self.set_notification_url(notification_url)
+        return self
+
+    def get_notification_firebase_server_key(self):
+        """
+        Firebaseのサーバーキーを取得
+        :return: Firebaseのサーバーキー
+        :rtype: unicode
+        """
+        return self.__notification_firebase_server_key
+
+    def set_notification_firebase_server_key(self, notification_firebase_server_key):
+        """
+        Firebaseのサーバーキーを設定
+        :param notification_firebase_server_key: Firebaseのサーバーキー
+        :type notification_firebase_server_key: unicode
+        """
+        self.__notification_firebase_server_key = notification_firebase_server_key
+
+    def with_notification_firebase_server_key(self, notification_firebase_server_key):
+        """
+        Firebaseのサーバーキーを設定
+        :param notification_firebase_server_key: Firebaseのサーバーキー
+        :type notification_firebase_server_key: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_notification_firebase_server_key(notification_firebase_server_key)
+        return self
+
+    def get_create_certificate_trigger_script(self):
+        """
+        クライアント証明書発行時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書発行時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__create_certificate_trigger_script
+
+    def set_create_certificate_trigger_script(self, create_certificate_trigger_script):
+        """
+        クライアント証明書発行時 に実行されるGS2-Scriptを設定
+        :param create_certificate_trigger_script: クライアント証明書発行時 に実行されるGS2-Script
+        :type create_certificate_trigger_script: unicode
+        """
+        self.__create_certificate_trigger_script = create_certificate_trigger_script
+
+    def with_create_certificate_trigger_script(self, create_certificate_trigger_script):
+        """
+        クライアント証明書発行時 に実行されるGS2-Scriptを設定
+        :param create_certificate_trigger_script: クライアント証明書発行時 に実行されるGS2-Script
+        :type create_certificate_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_create_certificate_trigger_script(create_certificate_trigger_script)
+        return self
+
+    def get_create_certificate_done_trigger_script(self):
+        """
+        クライアント証明書発行完了時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書発行完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__create_certificate_done_trigger_script
+
+    def set_create_certificate_done_trigger_script(self, create_certificate_done_trigger_script):
+        """
+        クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
+        :param create_certificate_done_trigger_script: クライアント証明書発行完了時 に実行されるGS2-Script
+        :type create_certificate_done_trigger_script: unicode
+        """
+        self.__create_certificate_done_trigger_script = create_certificate_done_trigger_script
+
+    def with_create_certificate_done_trigger_script(self, create_certificate_done_trigger_script):
+        """
+        クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
+        :param create_certificate_done_trigger_script: クライアント証明書発行完了時 に実行されるGS2-Script
+        :type create_certificate_done_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_create_certificate_done_trigger_script(create_certificate_done_trigger_script)
+        return self
+
+    def get_delete_certificate_trigger_script(self):
+        """
+        クライアント証明書削除時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書削除時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__delete_certificate_trigger_script
+
+    def set_delete_certificate_trigger_script(self, delete_certificate_trigger_script):
+        """
+        クライアント証明書削除時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_trigger_script: クライアント証明書削除時 に実行されるGS2-Script
+        :type delete_certificate_trigger_script: unicode
+        """
+        self.__delete_certificate_trigger_script = delete_certificate_trigger_script
+
+    def with_delete_certificate_trigger_script(self, delete_certificate_trigger_script):
+        """
+        クライアント証明書削除時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_trigger_script: クライアント証明書削除時 に実行されるGS2-Script
+        :type delete_certificate_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_delete_certificate_trigger_script(delete_certificate_trigger_script)
+        return self
+
+    def get_delete_certificate_done_trigger_script(self):
+        """
+        クライアント証明書削除完了時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書削除完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__delete_certificate_done_trigger_script
+
+    def set_delete_certificate_done_trigger_script(self, delete_certificate_done_trigger_script):
+        """
+        クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_done_trigger_script: クライアント証明書削除完了時 に実行されるGS2-Script
+        :type delete_certificate_done_trigger_script: unicode
+        """
+        self.__delete_certificate_done_trigger_script = delete_certificate_done_trigger_script
+
+    def with_delete_certificate_done_trigger_script(self, delete_certificate_done_trigger_script):
+        """
+        クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_done_trigger_script: クライアント証明書削除完了時 に実行されるGS2-Script
+        :type delete_certificate_done_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_delete_certificate_done_trigger_script(delete_certificate_done_trigger_script)
+        return self
+
+    def get_publish_trigger_script(self):
+        """
+        通知送信時 に実行されるGS2-Scriptを取得
+        :return: 通知送信時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__publish_trigger_script
+
+    def set_publish_trigger_script(self, publish_trigger_script):
+        """
+        通知送信時 に実行されるGS2-Scriptを設定
+        :param publish_trigger_script: 通知送信時 に実行されるGS2-Script
+        :type publish_trigger_script: unicode
+        """
+        self.__publish_trigger_script = publish_trigger_script
+
+    def with_publish_trigger_script(self, publish_trigger_script):
+        """
+        通知送信時 に実行されるGS2-Scriptを設定
+        :param publish_trigger_script: 通知送信時 に実行されるGS2-Script
+        :type publish_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_publish_trigger_script(publish_trigger_script)
+        return self
+
+    def get_publish_done_trigger_script(self):
+        """
+        通知送信完了時 に実行されるGS2-Scriptを取得
+        :return: 通知送信完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__publish_done_trigger_script
+
+    def set_publish_done_trigger_script(self, publish_done_trigger_script):
+        """
+        通知送信完了時 に実行されるGS2-Scriptを設定
+        :param publish_done_trigger_script: 通知送信完了時 に実行されるGS2-Script
+        :type publish_done_trigger_script: unicode
+        """
+        self.__publish_done_trigger_script = publish_done_trigger_script
+
+    def with_publish_done_trigger_script(self, publish_done_trigger_script):
+        """
+        通知送信完了時 に実行されるGS2-Scriptを設定
+        :param publish_done_trigger_script: 通知送信完了時 に実行されるGS2-Script
+        :type publish_done_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_publish_done_trigger_script(publish_done_trigger_script)
+        return self
+
+    def get_set_firebase_token_trigger_script(self):
+        """
+        Firebaseデバイストークン登録時 に実行されるGS2-Scriptを取得
+        :return: Firebaseデバイストークン登録時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__set_firebase_token_trigger_script
+
+    def set_set_firebase_token_trigger_script(self, set_firebase_token_trigger_script):
+        """
+        Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_trigger_script: Firebaseデバイストークン登録時 に実行されるGS2-Script
+        :type set_firebase_token_trigger_script: unicode
+        """
+        self.__set_firebase_token_trigger_script = set_firebase_token_trigger_script
+
+    def with_set_firebase_token_trigger_script(self, set_firebase_token_trigger_script):
+        """
+        Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_trigger_script: Firebaseデバイストークン登録時 に実行されるGS2-Script
+        :type set_firebase_token_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_set_firebase_token_trigger_script(set_firebase_token_trigger_script)
+        return self
+
+    def get_set_firebase_token_done_trigger_script(self):
+        """
+        Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを取得
+        :return: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__set_firebase_token_done_trigger_script
+
+    def set_set_firebase_token_done_trigger_script(self, set_firebase_token_done_trigger_script):
+        """
+        Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_done_trigger_script: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+        :type set_firebase_token_done_trigger_script: unicode
+        """
+        self.__set_firebase_token_done_trigger_script = set_firebase_token_done_trigger_script
+
+    def with_set_firebase_token_done_trigger_script(self, set_firebase_token_done_trigger_script):
+        """
+        Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_done_trigger_script: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+        :type set_firebase_token_done_trigger_script: unicode
+        :return: this
+        :rtype: UpdateGameRequest
+        """
+        self.set_set_firebase_token_done_trigger_script(set_firebase_token_done_trigger_script)
         return self

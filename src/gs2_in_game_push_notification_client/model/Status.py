@@ -18,48 +18,16 @@ class Status(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__status = None
-            self.__create_at = None
             self.__user_id = None
+            self.__status = None
             self.__fcm_token = None
+            self.__create_at = None
         else:
-            self.set_status(params['status'] if 'status' in params.keys() else None)
-            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_user_id(params['userId'] if 'userId' in params.keys() else None)
+            self.set_status(params['status'] if 'status' in params.keys() else None)
             self.set_fcm_token(params['fcmToken'] if 'fcmToken' in params.keys() else None)
+            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
 
-
-    def get_status(self):
-        """
-        ステータスを取得
-        :return: ステータス
-        :rtype: unicode
-        """
-        return self.__status
-
-    def set_status(self, status):
-        """
-        ステータスを設定
-        :param status: ステータス
-        :type status: unicode
-        """
-        self.__status = status
-
-    def get_create_at(self):
-        """
-        登録日時を取得
-        :return: 登録日時
-        :rtype: int
-        """
-        return self.__create_at
-
-    def set_create_at(self, create_at):
-        """
-        登録日時を設定
-        :param create_at: 登録日時
-        :type create_at: int
-        """
-        self.__create_at = create_at
 
     def get_user_id(self):
         """
@@ -77,6 +45,22 @@ class Status(object):
         """
         self.__user_id = user_id
 
+    def get_status(self):
+        """
+        ステータスを取得
+        :return: ステータス
+        :rtype: unicode
+        """
+        return self.__status
+
+    def set_status(self, status):
+        """
+        ステータスを設定
+        :param status: ステータス
+        :type status: unicode
+        """
+        self.__status = status
+
     def get_fcm_token(self):
         """
         Firebaseトークンを取得
@@ -93,10 +77,26 @@ class Status(object):
         """
         self.__fcm_token = fcm_token
 
+    def get_create_at(self):
+        """
+        登録日時を取得
+        :return: 登録日時
+        :rtype: int
+        """
+        return self.__create_at
+
+    def set_create_at(self, create_at):
+        """
+        登録日時を設定
+        :param create_at: 登録日時
+        :type create_at: int
+        """
+        self.__create_at = create_at
+
     def to_dict(self):
         return { 
-            "status": self.__status,
-            "createAt": self.__create_at,
             "userId": self.__user_id,
+            "status": self.__status,
             "fcmToken": self.__fcm_token,
+            "createAt": self.__create_at,
         }

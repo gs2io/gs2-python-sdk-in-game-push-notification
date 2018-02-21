@@ -19,26 +19,42 @@ class Game(object):
     def __init__(self, params=None):
         if params is None:
             self.__game_id = None
+            self.__owner_id = None
             self.__name = None
             self.__description = None
             self.__service_class = None
-            self.__create_at = None
-            self.__notification_url = None
-            self.__owner_id = None
-            self.__update_at = None
             self.__offline_transfer = None
+            self.__notification_url = None
             self.__notification_firebase_server_key = None
+            self.__create_certificate_trigger_script = None
+            self.__create_certificate_done_trigger_script = None
+            self.__delete_certificate_trigger_script = None
+            self.__delete_certificate_done_trigger_script = None
+            self.__publish_trigger_script = None
+            self.__publish_done_trigger_script = None
+            self.__set_firebase_token_trigger_script = None
+            self.__set_firebase_token_done_trigger_script = None
+            self.__create_at = None
+            self.__update_at = None
         else:
             self.set_game_id(params['gameId'] if 'gameId' in params.keys() else None)
+            self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
             self.set_name(params['name'] if 'name' in params.keys() else None)
             self.set_description(params['description'] if 'description' in params.keys() else None)
             self.set_service_class(params['serviceClass'] if 'serviceClass' in params.keys() else None)
-            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
-            self.set_notification_url(params['notificationUrl'] if 'notificationUrl' in params.keys() else None)
-            self.set_owner_id(params['ownerId'] if 'ownerId' in params.keys() else None)
-            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
             self.set_offline_transfer(params['offlineTransfer'] if 'offlineTransfer' in params.keys() else None)
+            self.set_notification_url(params['notificationUrl'] if 'notificationUrl' in params.keys() else None)
             self.set_notification_firebase_server_key(params['notificationFirebaseServerKey'] if 'notificationFirebaseServerKey' in params.keys() else None)
+            self.set_create_certificate_trigger_script(params['createCertificateTriggerScript'] if 'createCertificateTriggerScript' in params.keys() else None)
+            self.set_create_certificate_done_trigger_script(params['createCertificateDoneTriggerScript'] if 'createCertificateDoneTriggerScript' in params.keys() else None)
+            self.set_delete_certificate_trigger_script(params['deleteCertificateTriggerScript'] if 'deleteCertificateTriggerScript' in params.keys() else None)
+            self.set_delete_certificate_done_trigger_script(params['deleteCertificateDoneTriggerScript'] if 'deleteCertificateDoneTriggerScript' in params.keys() else None)
+            self.set_publish_trigger_script(params['publishTriggerScript'] if 'publishTriggerScript' in params.keys() else None)
+            self.set_publish_done_trigger_script(params['publishDoneTriggerScript'] if 'publishDoneTriggerScript' in params.keys() else None)
+            self.set_set_firebase_token_trigger_script(params['setFirebaseTokenTriggerScript'] if 'setFirebaseTokenTriggerScript' in params.keys() else None)
+            self.set_set_firebase_token_done_trigger_script(params['setFirebaseTokenDoneTriggerScript'] if 'setFirebaseTokenDoneTriggerScript' in params.keys() else None)
+            self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
+            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
 
     def get_game_id(self):
@@ -56,6 +72,22 @@ class Game(object):
         :type game_id: unicode
         """
         self.__game_id = game_id
+
+    def get_owner_id(self):
+        """
+        オーナーIDを取得
+        :return: オーナーID
+        :rtype: unicode
+        """
+        return self.__owner_id
+
+    def set_owner_id(self, owner_id):
+        """
+        オーナーIDを設定
+        :param owner_id: オーナーID
+        :type owner_id: unicode
+        """
+        self.__owner_id = owner_id
 
     def get_name(self):
         """
@@ -105,21 +137,21 @@ class Game(object):
         """
         self.__service_class = service_class
 
-    def get_create_at(self):
+    def get_offline_transfer(self):
         """
-        作成日時(エポック秒)を取得
-        :return: 作成日時(エポック秒)
-        :rtype: int
+        対象がオフライン時使用する転送方式を取得
+        :return: 対象がオフライン時使用する転送方式
+        :rtype: unicode
         """
-        return self.__create_at
+        return self.__offline_transfer
 
-    def set_create_at(self, create_at):
+    def set_offline_transfer(self, offline_transfer):
         """
-        作成日時(エポック秒)を設定
-        :param create_at: 作成日時(エポック秒)
-        :type create_at: int
+        対象がオフライン時使用する転送方式を設定
+        :param offline_transfer: 対象がオフライン時使用する転送方式
+        :type offline_transfer: unicode
         """
-        self.__create_at = create_at
+        self.__offline_transfer = offline_transfer
 
     def get_notification_url(self):
         """
@@ -137,21 +169,165 @@ class Game(object):
         """
         self.__notification_url = notification_url
 
-    def get_owner_id(self):
+    def get_notification_firebase_server_key(self):
         """
-        オーナーIDを取得
-        :return: オーナーID
+        fcm を選択した際の Firebase サーバーキーを取得
+        :return: fcm を選択した際の Firebase サーバーキー
         :rtype: unicode
         """
-        return self.__owner_id
+        return self.__notification_firebase_server_key
 
-    def set_owner_id(self, owner_id):
+    def set_notification_firebase_server_key(self, notification_firebase_server_key):
         """
-        オーナーIDを設定
-        :param owner_id: オーナーID
-        :type owner_id: unicode
+        fcm を選択した際の Firebase サーバーキーを設定
+        :param notification_firebase_server_key: fcm を選択した際の Firebase サーバーキー
+        :type notification_firebase_server_key: unicode
         """
-        self.__owner_id = owner_id
+        self.__notification_firebase_server_key = notification_firebase_server_key
+
+    def get_create_certificate_trigger_script(self):
+        """
+        クライアント証明書発行時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書発行時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__create_certificate_trigger_script
+
+    def set_create_certificate_trigger_script(self, create_certificate_trigger_script):
+        """
+        クライアント証明書発行時 に実行されるGS2-Scriptを設定
+        :param create_certificate_trigger_script: クライアント証明書発行時 に実行されるGS2-Script
+        :type create_certificate_trigger_script: unicode
+        """
+        self.__create_certificate_trigger_script = create_certificate_trigger_script
+
+    def get_create_certificate_done_trigger_script(self):
+        """
+        クライアント証明書発行完了時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書発行完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__create_certificate_done_trigger_script
+
+    def set_create_certificate_done_trigger_script(self, create_certificate_done_trigger_script):
+        """
+        クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
+        :param create_certificate_done_trigger_script: クライアント証明書発行完了時 に実行されるGS2-Script
+        :type create_certificate_done_trigger_script: unicode
+        """
+        self.__create_certificate_done_trigger_script = create_certificate_done_trigger_script
+
+    def get_delete_certificate_trigger_script(self):
+        """
+        クライアント証明書削除時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書削除時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__delete_certificate_trigger_script
+
+    def set_delete_certificate_trigger_script(self, delete_certificate_trigger_script):
+        """
+        クライアント証明書削除時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_trigger_script: クライアント証明書削除時 に実行されるGS2-Script
+        :type delete_certificate_trigger_script: unicode
+        """
+        self.__delete_certificate_trigger_script = delete_certificate_trigger_script
+
+    def get_delete_certificate_done_trigger_script(self):
+        """
+        クライアント証明書削除完了時 に実行されるGS2-Scriptを取得
+        :return: クライアント証明書削除完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__delete_certificate_done_trigger_script
+
+    def set_delete_certificate_done_trigger_script(self, delete_certificate_done_trigger_script):
+        """
+        クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+        :param delete_certificate_done_trigger_script: クライアント証明書削除完了時 に実行されるGS2-Script
+        :type delete_certificate_done_trigger_script: unicode
+        """
+        self.__delete_certificate_done_trigger_script = delete_certificate_done_trigger_script
+
+    def get_publish_trigger_script(self):
+        """
+        通知送信時 に実行されるGS2-Scriptを取得
+        :return: 通知送信時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__publish_trigger_script
+
+    def set_publish_trigger_script(self, publish_trigger_script):
+        """
+        通知送信時 に実行されるGS2-Scriptを設定
+        :param publish_trigger_script: 通知送信時 に実行されるGS2-Script
+        :type publish_trigger_script: unicode
+        """
+        self.__publish_trigger_script = publish_trigger_script
+
+    def get_publish_done_trigger_script(self):
+        """
+        通知送信完了時 に実行されるGS2-Scriptを取得
+        :return: 通知送信完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__publish_done_trigger_script
+
+    def set_publish_done_trigger_script(self, publish_done_trigger_script):
+        """
+        通知送信完了時 に実行されるGS2-Scriptを設定
+        :param publish_done_trigger_script: 通知送信完了時 に実行されるGS2-Script
+        :type publish_done_trigger_script: unicode
+        """
+        self.__publish_done_trigger_script = publish_done_trigger_script
+
+    def get_set_firebase_token_trigger_script(self):
+        """
+        Firebaseデバイストークン登録時 に実行されるGS2-Scriptを取得
+        :return: Firebaseデバイストークン登録時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__set_firebase_token_trigger_script
+
+    def set_set_firebase_token_trigger_script(self, set_firebase_token_trigger_script):
+        """
+        Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_trigger_script: Firebaseデバイストークン登録時 に実行されるGS2-Script
+        :type set_firebase_token_trigger_script: unicode
+        """
+        self.__set_firebase_token_trigger_script = set_firebase_token_trigger_script
+
+    def get_set_firebase_token_done_trigger_script(self):
+        """
+        Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを取得
+        :return: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+        :rtype: unicode
+        """
+        return self.__set_firebase_token_done_trigger_script
+
+    def set_set_firebase_token_done_trigger_script(self, set_firebase_token_done_trigger_script):
+        """
+        Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
+        :param set_firebase_token_done_trigger_script: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+        :type set_firebase_token_done_trigger_script: unicode
+        """
+        self.__set_firebase_token_done_trigger_script = set_firebase_token_done_trigger_script
+
+    def get_create_at(self):
+        """
+        作成日時(エポック秒)を取得
+        :return: 作成日時(エポック秒)
+        :rtype: int
+        """
+        return self.__create_at
+
+    def set_create_at(self, create_at):
+        """
+        作成日時(エポック秒)を設定
+        :param create_at: 作成日時(エポック秒)
+        :type create_at: int
+        """
+        self.__create_at = create_at
 
     def get_update_at(self):
         """
@@ -169,48 +345,24 @@ class Game(object):
         """
         self.__update_at = update_at
 
-    def get_offline_transfer(self):
-        """
-        対象がオフライン時使用する転送方式を取得
-        :return: 対象がオフライン時使用する転送方式
-        :rtype: unicode
-        """
-        return self.__offline_transfer
-
-    def set_offline_transfer(self, offline_transfer):
-        """
-        対象がオフライン時使用する転送方式を設定
-        :param offline_transfer: 対象がオフライン時使用する転送方式
-        :type offline_transfer: unicode
-        """
-        self.__offline_transfer = offline_transfer
-
-    def get_notification_firebase_server_key(self):
-        """
-        fcm を選択した際の Firebase サーバーキーを取得
-        :return: fcm を選択した際の Firebase サーバーキー
-        :rtype: unicode
-        """
-        return self.__notification_firebase_server_key
-
-    def set_notification_firebase_server_key(self, notification_firebase_server_key):
-        """
-        fcm を選択した際の Firebase サーバーキーを設定
-        :param notification_firebase_server_key: fcm を選択した際の Firebase サーバーキー
-        :type notification_firebase_server_key: unicode
-        """
-        self.__notification_firebase_server_key = notification_firebase_server_key
-
     def to_dict(self):
         return { 
             "gameId": self.__game_id,
+            "ownerId": self.__owner_id,
             "name": self.__name,
             "description": self.__description,
             "serviceClass": self.__service_class,
-            "createAt": self.__create_at,
-            "notificationUrl": self.__notification_url,
-            "ownerId": self.__owner_id,
-            "updateAt": self.__update_at,
             "offlineTransfer": self.__offline_transfer,
+            "notificationUrl": self.__notification_url,
             "notificationFirebaseServerKey": self.__notification_firebase_server_key,
+            "createCertificateTriggerScript": self.__create_certificate_trigger_script,
+            "createCertificateDoneTriggerScript": self.__create_certificate_done_trigger_script,
+            "deleteCertificateTriggerScript": self.__delete_certificate_trigger_script,
+            "deleteCertificateDoneTriggerScript": self.__delete_certificate_done_trigger_script,
+            "publishTriggerScript": self.__publish_trigger_script,
+            "publishDoneTriggerScript": self.__publish_done_trigger_script,
+            "setFirebaseTokenTriggerScript": self.__set_firebase_token_trigger_script,
+            "setFirebaseTokenDoneTriggerScript": self.__set_firebase_token_done_trigger_script,
+            "createAt": self.__create_at,
+            "updateAt": self.__update_at,
         }

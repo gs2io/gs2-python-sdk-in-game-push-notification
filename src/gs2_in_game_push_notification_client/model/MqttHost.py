@@ -18,32 +18,16 @@ class MqttHost(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__host = None
             self.__game_id = None
+            self.__host = None
             self.__port = None
             self.__root_certificate = None
         else:
-            self.set_host(params['host'] if 'host' in params.keys() else None)
             self.set_game_id(params['gameId'] if 'gameId' in params.keys() else None)
+            self.set_host(params['host'] if 'host' in params.keys() else None)
             self.set_port(params['port'] if 'port' in params.keys() else None)
             self.set_root_certificate(params['rootCertificate'] if 'rootCertificate' in params.keys() else None)
 
-
-    def get_host(self):
-        """
-        ホスト名を取得
-        :return: ホスト名
-        :rtype: unicode
-        """
-        return self.__host
-
-    def set_host(self, host):
-        """
-        ホスト名を設定
-        :param host: ホスト名
-        :type host: unicode
-        """
-        self.__host = host
 
     def get_game_id(self):
         """
@@ -60,6 +44,22 @@ class MqttHost(object):
         :type game_id: unicode
         """
         self.__game_id = game_id
+
+    def get_host(self):
+        """
+        ホスト名を取得
+        :return: ホスト名
+        :rtype: unicode
+        """
+        return self.__host
+
+    def set_host(self, host):
+        """
+        ホスト名を設定
+        :param host: ホスト名
+        :type host: unicode
+        """
+        self.__host = host
 
     def get_port(self):
         """
@@ -95,8 +95,8 @@ class MqttHost(object):
 
     def to_dict(self):
         return { 
-            "host": self.__host,
             "gameId": self.__game_id,
+            "host": self.__host,
             "port": self.__port,
             "rootCertificate": self.__root_certificate,
         }

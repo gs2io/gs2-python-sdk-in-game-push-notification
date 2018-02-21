@@ -18,32 +18,16 @@ class Certificate(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__pfx = None
             self.__certificate_id = None
-            self.__private_key = None
             self.__certificate = None
+            self.__private_key = None
+            self.__pfx = None
         else:
-            self.set_pfx(params['pfx'] if 'pfx' in params.keys() else None)
             self.set_certificate_id(params['certificateId'] if 'certificateId' in params.keys() else None)
-            self.set_private_key(params['privateKey'] if 'privateKey' in params.keys() else None)
             self.set_certificate(params['certificate'] if 'certificate' in params.keys() else None)
+            self.set_private_key(params['privateKey'] if 'privateKey' in params.keys() else None)
+            self.set_pfx(params['pfx'] if 'pfx' in params.keys() else None)
 
-
-    def get_pfx(self):
-        """
-        PFXフォーマットの秘密鍵を取得
-        :return: PFXフォーマットの秘密鍵
-        :rtype: unicode
-        """
-        return self.__pfx
-
-    def set_pfx(self, pfx):
-        """
-        PFXフォーマットの秘密鍵を設定
-        :param pfx: PFXフォーマットの秘密鍵
-        :type pfx: unicode
-        """
-        self.__pfx = pfx
 
     def get_certificate_id(self):
         """
@@ -61,22 +45,6 @@ class Certificate(object):
         """
         self.__certificate_id = certificate_id
 
-    def get_private_key(self):
-        """
-        秘密鍵を取得
-        :return: 秘密鍵
-        :rtype: unicode
-        """
-        return self.__private_key
-
-    def set_private_key(self, private_key):
-        """
-        秘密鍵を設定
-        :param private_key: 秘密鍵
-        :type private_key: unicode
-        """
-        self.__private_key = private_key
-
     def get_certificate(self):
         """
         クライアント証明書を取得
@@ -93,10 +61,42 @@ class Certificate(object):
         """
         self.__certificate = certificate
 
+    def get_private_key(self):
+        """
+        秘密鍵を取得
+        :return: 秘密鍵
+        :rtype: unicode
+        """
+        return self.__private_key
+
+    def set_private_key(self, private_key):
+        """
+        秘密鍵を設定
+        :param private_key: 秘密鍵
+        :type private_key: unicode
+        """
+        self.__private_key = private_key
+
+    def get_pfx(self):
+        """
+        PFXフォーマットの秘密鍵を取得
+        :return: PFXフォーマットの秘密鍵
+        :rtype: unicode
+        """
+        return self.__pfx
+
+    def set_pfx(self, pfx):
+        """
+        PFXフォーマットの秘密鍵を設定
+        :param pfx: PFXフォーマットの秘密鍵
+        :type pfx: unicode
+        """
+        self.__pfx = pfx
+
     def to_dict(self):
         return { 
-            "pfx": self.__pfx,
             "certificateId": self.__certificate_id,
-            "privateKey": self.__private_key,
             "certificate": self.__certificate,
+            "privateKey": self.__private_key,
+            "pfx": self.__pfx,
         }
