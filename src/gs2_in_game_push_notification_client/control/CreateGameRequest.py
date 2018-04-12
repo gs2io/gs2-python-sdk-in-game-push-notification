@@ -101,7 +101,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param name: ゲーム名
         :type name: unicode
         """
-        if not isinstance(name, unicode):
+        if name and not isinstance(name, unicode):
             raise TypeError(type(name))
         self.__name = name
 
@@ -130,7 +130,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param description: 説明文
         :type description: unicode
         """
-        if not isinstance(description, unicode):
+        if description and not isinstance(description, unicode):
             raise TypeError(type(description))
         self.__description = description
 
@@ -159,7 +159,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param service_class: サービスクラス
         :type service_class: unicode
         """
-        if not isinstance(service_class, unicode):
+        if service_class and not isinstance(service_class, unicode):
             raise TypeError(type(service_class))
         self.__service_class = service_class
 
@@ -188,7 +188,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param offline_transfer: オフライン転送方式
         :type offline_transfer: unicode
         """
-        if not isinstance(offline_transfer, unicode):
+        if offline_transfer and not isinstance(offline_transfer, unicode):
             raise TypeError(type(offline_transfer))
         self.__offline_transfer = offline_transfer
 
@@ -217,7 +217,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param notification_url: オフライン転送先URL
         :type notification_url: unicode
         """
-        if not isinstance(notification_url, unicode):
+        if notification_url and not isinstance(notification_url, unicode):
             raise TypeError(type(notification_url))
         self.__notification_url = notification_url
 
@@ -246,7 +246,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param notification_firebase_server_key: Firebaseのサーバーキー
         :type notification_firebase_server_key: unicode
         """
-        if not isinstance(notification_firebase_server_key, unicode):
+        if notification_firebase_server_key and not isinstance(notification_firebase_server_key, unicode):
             raise TypeError(type(notification_firebase_server_key))
         self.__notification_firebase_server_key = notification_firebase_server_key
 
@@ -275,7 +275,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param create_certificate_trigger_script: クライアント証明書発行時 に実行されるGS2-Script
         :type create_certificate_trigger_script: unicode
         """
-        if not isinstance(create_certificate_trigger_script, unicode):
+        if create_certificate_trigger_script and not isinstance(create_certificate_trigger_script, unicode):
             raise TypeError(type(create_certificate_trigger_script))
         self.__create_certificate_trigger_script = create_certificate_trigger_script
 
@@ -304,7 +304,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param create_certificate_done_trigger_script: クライアント証明書発行完了時 に実行されるGS2-Script
         :type create_certificate_done_trigger_script: unicode
         """
-        if not isinstance(create_certificate_done_trigger_script, unicode):
+        if create_certificate_done_trigger_script and not isinstance(create_certificate_done_trigger_script, unicode):
             raise TypeError(type(create_certificate_done_trigger_script))
         self.__create_certificate_done_trigger_script = create_certificate_done_trigger_script
 
@@ -333,7 +333,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param delete_certificate_trigger_script: クライアント証明書削除時 に実行されるGS2-Script
         :type delete_certificate_trigger_script: unicode
         """
-        if not isinstance(delete_certificate_trigger_script, unicode):
+        if delete_certificate_trigger_script and not isinstance(delete_certificate_trigger_script, unicode):
             raise TypeError(type(delete_certificate_trigger_script))
         self.__delete_certificate_trigger_script = delete_certificate_trigger_script
 
@@ -362,7 +362,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param delete_certificate_done_trigger_script: クライアント証明書削除完了時 に実行されるGS2-Script
         :type delete_certificate_done_trigger_script: unicode
         """
-        if not isinstance(delete_certificate_done_trigger_script, unicode):
+        if delete_certificate_done_trigger_script and not isinstance(delete_certificate_done_trigger_script, unicode):
             raise TypeError(type(delete_certificate_done_trigger_script))
         self.__delete_certificate_done_trigger_script = delete_certificate_done_trigger_script
 
@@ -391,7 +391,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param publish_trigger_script: 通知送信時 に実行されるGS2-Script
         :type publish_trigger_script: unicode
         """
-        if not isinstance(publish_trigger_script, unicode):
+        if publish_trigger_script and not isinstance(publish_trigger_script, unicode):
             raise TypeError(type(publish_trigger_script))
         self.__publish_trigger_script = publish_trigger_script
 
@@ -420,7 +420,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param publish_done_trigger_script: 通知送信完了時 に実行されるGS2-Script
         :type publish_done_trigger_script: unicode
         """
-        if not isinstance(publish_done_trigger_script, unicode):
+        if publish_done_trigger_script and not isinstance(publish_done_trigger_script, unicode):
             raise TypeError(type(publish_done_trigger_script))
         self.__publish_done_trigger_script = publish_done_trigger_script
 
@@ -449,7 +449,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param set_firebase_token_trigger_script: Firebaseデバイストークン登録時 に実行されるGS2-Script
         :type set_firebase_token_trigger_script: unicode
         """
-        if not isinstance(set_firebase_token_trigger_script, unicode):
+        if set_firebase_token_trigger_script and not isinstance(set_firebase_token_trigger_script, unicode):
             raise TypeError(type(set_firebase_token_trigger_script))
         self.__set_firebase_token_trigger_script = set_firebase_token_trigger_script
 
@@ -478,7 +478,7 @@ class CreateGameRequest(Gs2BasicRequest):
         :param set_firebase_token_done_trigger_script: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
         :type set_firebase_token_done_trigger_script: unicode
         """
-        if not isinstance(set_firebase_token_done_trigger_script, unicode):
+        if set_firebase_token_done_trigger_script and not isinstance(set_firebase_token_done_trigger_script, unicode):
             raise TypeError(type(set_firebase_token_done_trigger_script))
         self.__set_firebase_token_done_trigger_script = set_firebase_token_done_trigger_script
 
