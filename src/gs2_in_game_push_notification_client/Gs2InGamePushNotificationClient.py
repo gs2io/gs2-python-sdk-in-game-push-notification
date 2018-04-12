@@ -14,8 +14,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import json
-
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
 
@@ -33,45 +31,6 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         :type region: str
         """
         super(Gs2InGamePushNotificationClient, self).__init__(credential, region)
-
-
-    def create_certificate(self, request):
-        """
-        クライアント証明書を新規作成します<br>
-        <br>
-        MQTTサーバに接続するためのクライアント証明書の発行を行います。<br>
-        1ユーザに対して発行できるクライアント証明書は同時に1つのみです。<br>
-        異なるデバイスでMQTTサーバにアクセスする場合、クライアント証明書を削除して取り直すようにしてください。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.CreateCertificateRequest.CreateCertificateRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.CreateCertificateResult.CreateCertificateResult
-        """
-        body = { 
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.CreateCertificateRequest import CreateCertificateRequest
-
-        from gs2_in_game_push_notification_client.control.CreateCertificateResult import CreateCertificateResult
-        return CreateCertificateResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
-            service=self.ENDPOINT,
-            module=CreateCertificateRequest.Constant.MODULE,
-            function=CreateCertificateRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
 
     def create_game(self, request):
         """
@@ -137,50 +96,15 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.CreateGameRequest import CreateGameRequest
-
         from gs2_in_game_push_notification_client.control.CreateGameResult import CreateGameResult
         return CreateGameResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game",
             service=self.ENDPOINT,
-            module=CreateGameRequest.Constant.MODULE,
-            function=CreateGameRequest.Constant.FUNCTION,
+            component=CreateGameRequest.Constant.MODULE,
+            target_function=CreateGameRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
-
-    def delete_certificate(self, request):
-        """
-        クライアント証明書を削除します。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.DeleteCertificateRequest.DeleteCertificateRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.DeleteCertificateRequest import DeleteCertificateRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
-            service=self.ENDPOINT,
-            module=DeleteCertificateRequest.Constant.MODULE,
-            function=DeleteCertificateRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
 
     def delete_game(self, request):
         """
@@ -188,45 +112,33 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_in_game_push_notification_client.control.DeleteGameRequest.DeleteGameRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DeleteGameRequest import DeleteGameRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
-            module=DeleteGameRequest.Constant.MODULE,
-            function=DeleteGameRequest.Constant.FUNCTION,
+            component=DeleteGameRequest.Constant.MODULE,
+            target_function=DeleteGameRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
-
-
     def describe_game(self, request):
         """
         ゲームの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_in_game_push_notification_client.control.DescribeGameRequest.DescribeGameRequest
         :return: 結果
         :rtype: gs2_in_game_push_notification_client.control.DescribeGameResult.DescribeGameResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
         }
@@ -238,26 +150,21 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         return DescribeGameResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game",
             service=self.ENDPOINT,
-            module=DescribeGameRequest.Constant.MODULE,
-            function=DescribeGameRequest.Constant.FUNCTION,
+            component=DescribeGameRequest.Constant.MODULE,
+            target_function=DescribeGameRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def describe_service_class(self, request):
         """
         サービスクラスの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_in_game_push_notification_client.control.DescribeServiceClassRequest.DescribeServiceClassRequest
         :return: 結果
         :rtype: gs2_in_game_push_notification_client.control.DescribeServiceClassResult.DescribeServiceClassResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -269,61 +176,21 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         return DescribeServiceClassResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game/serviceClass",
             service=self.ENDPOINT,
-            module=DescribeServiceClassRequest.Constant.MODULE,
-            function=DescribeServiceClassRequest.Constant.FUNCTION,
+            component=DescribeServiceClassRequest.Constant.MODULE,
+            target_function=DescribeServiceClassRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
-    def describe_status(self, request):
-        """
-        ユーザステータスの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.DescribeStatusRequest.DescribeStatusRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.DescribeStatusResult.DescribeStatusResult
-        """
-
-        query_strings = {
-
-            'pageToken': request.get_page_token(),
-
-            'limit': request.get_limit(),
-
-        }
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.DescribeStatusRequest import DescribeStatusRequest
-
-        from gs2_in_game_push_notification_client.control.DescribeStatusResult import DescribeStatusResult
-        return DescribeStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
-            service=self.ENDPOINT,
-            module=DescribeStatusRequest.Constant.MODULE,
-            function=DescribeStatusRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
 
     def get_game(self, request):
         """
         ゲームを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_in_game_push_notification_client.control.GetGameRequest.GetGameRequest
         :return: 結果
         :rtype: gs2_in_game_push_notification_client.control.GetGameResult.GetGameResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -335,26 +202,21 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         return GetGameResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
-            module=GetGameRequest.Constant.MODULE,
-            function=GetGameRequest.Constant.FUNCTION,
+            component=GetGameRequest.Constant.MODULE,
+            target_function=GetGameRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def get_game_status(self, request):
         """
         ゲームの状態を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_in_game_push_notification_client.control.GetGameStatusRequest.GetGameStatusRequest
         :return: 結果
         :rtype: gs2_in_game_push_notification_client.control.GetGameStatusResult.GetGameStatusResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -366,149 +228,11 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         return GetGameStatusResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/status",
             service=self.ENDPOINT,
-            module=GetGameStatusRequest.Constant.MODULE,
-            function=GetGameStatusRequest.Constant.FUNCTION,
+            component=GetGameStatusRequest.Constant.MODULE,
+            target_function=GetGameStatusRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
-    def get_mqtt_host(self, request):
-        """
-        MQTTサーバ情報を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.GetMqttHostRequest.GetMqttHostRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.GetMqttHostResult.GetMqttHostResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.GetMqttHostRequest import GetMqttHostRequest
-
-        from gs2_in_game_push_notification_client.control.GetMqttHostResult import GetMqttHostResult
-        return GetMqttHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/mqtt",
-            service=self.ENDPOINT,
-            module=GetMqttHostRequest.Constant.MODULE,
-            function=GetMqttHostRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def get_web_socket_host(self, request):
-        """
-        MQTT over Websocketサーバ情報を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.GetWebSocketHostRequest.GetWebSocketHostRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.GetWebSocketHostResult.GetWebSocketHostResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.GetWebSocketHostRequest import GetWebSocketHostRequest
-
-        from gs2_in_game_push_notification_client.control.GetWebSocketHostResult import GetWebSocketHostResult
-        return GetWebSocketHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/webSocket",
-            service=self.ENDPOINT,
-            module=GetWebSocketHostRequest.Constant.MODULE,
-            function=GetWebSocketHostRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-
-    def publish(self, request):
-        """
-        通知を送信します。<br>
-        <br>
-        - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.PublishRequest.PublishRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.PublishResult.PublishResult
-        """
-        body = { 
-            "subject": request.get_subject(),
-            "body": request.get_body(),
-            "enableOfflineTransfer": request.get_enable_offline_transfer(),
-        }
-
-        if request.get_offline_transfer_sound() is not None:
-            body["offlineTransferSound"] = request.get_offline_transfer_sound()
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.PublishRequest import PublishRequest
-
-        from gs2_in_game_push_notification_client.control.PublishResult import PublishResult
-        return PublishResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user/" + str(("null" if request.get_user_id() is None or request.get_user_id() == "" else request.get_user_id())) + "",
-            service=self.ENDPOINT,
-            module=PublishRequest.Constant.MODULE,
-            function=PublishRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def set_firebase_token(self, request):
-        """
-        Firebase のデバイストークンを設定します。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest.SetFirebaseTokenRequest
-        :return: 結果
-        :rtype: gs2_in_game_push_notification_client.control.SetFirebaseTokenResult.SetFirebaseTokenResult
-        """
-        body = { 
-            "token": request.get_token(),
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest import SetFirebaseTokenRequest
-
-        from gs2_in_game_push_notification_client.control.SetFirebaseTokenResult import SetFirebaseTokenResult
-        return SetFirebaseTokenResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
-            service=self.ENDPOINT,
-            module=SetFirebaseTokenRequest.Constant.MODULE,
-            function=SetFirebaseTokenRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
 
     def update_game(self, request):
         """
@@ -523,7 +247,6 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
             "serviceClass": request.get_service_class(),
             "offlineTransfer": request.get_offline_transfer(),
         }
-
         if request.get_description() is not None:
             body["description"] = request.get_description()
         if request.get_notification_url() is not None:
@@ -551,15 +274,217 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.UpdateGameRequest import UpdateGameRequest
-
         from gs2_in_game_push_notification_client.control.UpdateGameResult import UpdateGameResult
         return UpdateGameResult(self._do_put_request(
             url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
             service=self.ENDPOINT,
-            module=UpdateGameRequest.Constant.MODULE,
-            function=UpdateGameRequest.Constant.FUNCTION,
+            component=UpdateGameRequest.Constant.MODULE,
+            target_function=UpdateGameRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
 
+    def get_mqtt_host(self, request):
+        """
+        MQTTサーバ情報を取得します<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.GetMqttHostRequest.GetMqttHostRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.GetMqttHostResult.GetMqttHostResult
+        """
+        query_strings = {
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.GetMqttHostRequest import GetMqttHostRequest
 
+        from gs2_in_game_push_notification_client.control.GetMqttHostResult import GetMqttHostResult
+        return GetMqttHostResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/mqtt",
+            service=self.ENDPOINT,
+            component=GetMqttHostRequest.Constant.MODULE,
+            target_function=GetMqttHostRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+    def get_web_socket_host(self, request):
+        """
+        MQTT over Websocketサーバ情報を取得します<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.GetWebSocketHostRequest.GetWebSocketHostRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.GetWebSocketHostResult.GetWebSocketHostResult
+        """
+        query_strings = {
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.GetWebSocketHostRequest import GetWebSocketHostRequest
+
+        from gs2_in_game_push_notification_client.control.GetWebSocketHostResult import GetWebSocketHostResult
+        return GetWebSocketHostResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/webSocket",
+            service=self.ENDPOINT,
+            component=GetWebSocketHostRequest.Constant.MODULE,
+            target_function=GetWebSocketHostRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+    def publish(self, request):
+        """
+        通知を送信します。<br>
+        <br>
+        - 消費クオータ: 3<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.PublishRequest.PublishRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.PublishResult.PublishResult
+        """
+        body = { 
+            "subject": request.get_subject(),
+            "body": request.get_body(),
+            "enableOfflineTransfer": request.get_enable_offline_transfer(),
+        }
+
+        if request.get_offline_transfer_sound() is not None:
+            body["offlineTransferSound"] = request.get_offline_transfer_sound()
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.PublishRequest import PublishRequest
+        from gs2_in_game_push_notification_client.control.PublishResult import PublishResult
+        return PublishResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user/" + str(("null" if request.get_user_id() is None or request.get_user_id() == "" else request.get_user_id())) + "",
+            service=self.ENDPOINT,
+            component=PublishRequest.Constant.MODULE,
+            target_function=PublishRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def create_certificate(self, request):
+        """
+        クライアント証明書を新規作成します<br>
+        <br>
+        MQTTサーバに接続するためのクライアント証明書の発行を行います。<br>
+        1ユーザに対して発行できるクライアント証明書は同時に1つのみです。<br>
+        異なるデバイスでMQTTサーバにアクセスする場合、クライアント証明書を削除して取り直すようにしてください。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.CreateCertificateRequest.CreateCertificateRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.CreateCertificateResult.CreateCertificateResult
+        """
+        body = { 
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.CreateCertificateRequest import CreateCertificateRequest
+        from gs2_in_game_push_notification_client.control.CreateCertificateResult import CreateCertificateResult
+        return CreateCertificateResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
+            service=self.ENDPOINT,
+            component=CreateCertificateRequest.Constant.MODULE,
+            target_function=CreateCertificateRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def delete_certificate(self, request):
+        """
+        クライアント証明書を削除します。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.DeleteCertificateRequest.DeleteCertificateRequest
+        """
+        query_strings = {}
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.DeleteCertificateRequest import DeleteCertificateRequest
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
+            service=self.ENDPOINT,
+            component=DeleteCertificateRequest.Constant.MODULE,
+            target_function=DeleteCertificateRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+    def describe_status(self, request):
+        """
+        ユーザステータスの一覧を取得します<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.DescribeStatusRequest.DescribeStatusRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.DescribeStatusResult.DescribeStatusResult
+        """
+        query_strings = {
+            'pageToken': request.get_page_token(),
+            'limit': request.get_limit(),
+        }
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.DescribeStatusRequest import DescribeStatusRequest
+
+        from gs2_in_game_push_notification_client.control.DescribeStatusResult import DescribeStatusResult
+        return DescribeStatusResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
+            service=self.ENDPOINT,
+            component=DescribeStatusRequest.Constant.MODULE,
+            target_function=DescribeStatusRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+    def set_firebase_token(self, request):
+        """
+        Firebase のデバイストークンを設定します。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest.SetFirebaseTokenRequest
+        :return: 結果
+        :rtype: gs2_in_game_push_notification_client.control.SetFirebaseTokenResult.SetFirebaseTokenResult
+        """
+        body = { 
+            "token": request.get_token(),
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest import SetFirebaseTokenRequest
+        from gs2_in_game_push_notification_client.control.SetFirebaseTokenResult import SetFirebaseTokenResult
+        return SetFirebaseTokenResult(self._do_put_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
+            service=self.ENDPOINT,
+            component=SetFirebaseTokenRequest.Constant.MODULE,
+            target_function=SetFirebaseTokenRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))

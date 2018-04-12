@@ -32,17 +32,27 @@ class PublishRequest(Gs2BasicRequest):
         super(PublishRequest, self).__init__(params)
         if params is None:
             self.__game_name = None
-            self.__user_id = None
-            self.__subject = None
-            self.__body = None
-            self.__enable_offline_transfer = None
-            self.__offline_transfer_sound = None
         else:
             self.set_game_name(params['gameName'] if 'gameName' in params.keys() else None)
+        if params is None:
+            self.__user_id = None
+        else:
             self.set_user_id(params['userId'] if 'userId' in params.keys() else None)
+        if params is None:
+            self.__subject = None
+        else:
             self.set_subject(params['subject'] if 'subject' in params.keys() else None)
+        if params is None:
+            self.__body = None
+        else:
             self.set_body(params['body'] if 'body' in params.keys() else None)
+        if params is None:
+            self.__enable_offline_transfer = None
+        else:
             self.set_enable_offline_transfer(params['enableOfflineTransfer'] if 'enableOfflineTransfer' in params.keys() else None)
+        if params is None:
+            self.__offline_transfer_sound = None
+        else:
             self.set_offline_transfer_sound(params['offlineTransferSound'] if 'offlineTransferSound' in params.keys() else None)
 
     def get_game_name(self):
@@ -59,6 +69,8 @@ class PublishRequest(Gs2BasicRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
+        if not isinstance(game_name, unicode):
+            raise TypeError(type(game_name))
         self.__game_name = game_name
 
     def with_game_name(self, game_name):
@@ -86,6 +98,8 @@ class PublishRequest(Gs2BasicRequest):
         :param user_id: 通知の送信先ユーザID
         :type user_id: unicode
         """
+        if not isinstance(user_id, unicode):
+            raise TypeError(type(user_id))
         self.__user_id = user_id
 
     def with_user_id(self, user_id):
@@ -113,6 +127,8 @@ class PublishRequest(Gs2BasicRequest):
         :param subject: 件名
         :type subject: unicode
         """
+        if not isinstance(subject, unicode):
+            raise TypeError(type(subject))
         self.__subject = subject
 
     def with_subject(self, subject):
@@ -140,6 +156,8 @@ class PublishRequest(Gs2BasicRequest):
         :param body: 本文
         :type body: unicode
         """
+        if not isinstance(body, unicode):
+            raise TypeError(type(body))
         self.__body = body
 
     def with_body(self, body):
@@ -167,6 +185,8 @@ class PublishRequest(Gs2BasicRequest):
         :param enable_offline_transfer: 対象ユーザがオフラインの場合に転送を実行するか
         :type enable_offline_transfer: bool
         """
+        if not isinstance(enable_offline_transfer, bool):
+            raise TypeError(type(enable_offline_transfer))
         self.__enable_offline_transfer = enable_offline_transfer
 
     def with_enable_offline_transfer(self, enable_offline_transfer):
@@ -194,6 +214,8 @@ class PublishRequest(Gs2BasicRequest):
         :param offline_transfer_sound: Firebaseへの転送時に使用する通知音ファイル名
         :type offline_transfer_sound: unicode
         """
+        if not isinstance(offline_transfer_sound, unicode):
+            raise TypeError(type(offline_transfer_sound))
         self.__offline_transfer_sound = offline_transfer_sound
 
     def with_offline_transfer_sound(self, offline_transfer_sound):

@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Certificate(object):
 
     def __init__(self, params=None):
@@ -27,7 +28,6 @@ class Certificate(object):
             self.set_certificate(params['certificate'] if 'certificate' in params.keys() else None)
             self.set_private_key(params['privateKey'] if 'privateKey' in params.keys() else None)
             self.set_pfx(params['pfx'] if 'pfx' in params.keys() else None)
-
 
     def get_certificate_id(self):
         """
@@ -94,7 +94,7 @@ class Certificate(object):
         self.__pfx = pfx
 
     def to_dict(self):
-        return { 
+        return {
             "certificateId": self.__certificate_id,
             "certificate": self.__certificate,
             "privateKey": self.__private_key,

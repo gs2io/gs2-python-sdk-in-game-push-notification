@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class WebSocketHost(object):
 
     def __init__(self, params=None):
@@ -23,7 +24,6 @@ class WebSocketHost(object):
         else:
             self.set_game_id(params['gameId'] if 'gameId' in params.keys() else None)
             self.set_endpoint(params['endpoint'] if 'endpoint' in params.keys() else None)
-
 
     def get_game_id(self):
         """
@@ -58,7 +58,7 @@ class WebSocketHost(object):
         self.__endpoint = endpoint
 
     def to_dict(self):
-        return { 
+        return {
             "gameId": self.__game_id,
             "endpoint": self.__endpoint,
         }

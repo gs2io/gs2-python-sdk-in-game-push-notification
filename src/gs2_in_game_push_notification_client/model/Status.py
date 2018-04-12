@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Status(object):
 
     def __init__(self, params=None):
@@ -27,7 +28,6 @@ class Status(object):
             self.set_status(params['status'] if 'status' in params.keys() else None)
             self.set_fcm_token(params['fcmToken'] if 'fcmToken' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
-
 
     def get_user_id(self):
         """
@@ -94,7 +94,7 @@ class Status(object):
         self.__create_at = create_at
 
     def to_dict(self):
-        return { 
+        return {
             "userId": self.__user_id,
             "status": self.__status,
             "fcmToken": self.__fcm_token,

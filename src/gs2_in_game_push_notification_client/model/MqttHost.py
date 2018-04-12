@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class MqttHost(object):
 
     def __init__(self, params=None):
@@ -27,7 +28,6 @@ class MqttHost(object):
             self.set_host(params['host'] if 'host' in params.keys() else None)
             self.set_port(params['port'] if 'port' in params.keys() else None)
             self.set_root_certificate(params['rootCertificate'] if 'rootCertificate' in params.keys() else None)
-
 
     def get_game_id(self):
         """
@@ -94,7 +94,7 @@ class MqttHost(object):
         self.__root_certificate = root_certificate
 
     def to_dict(self):
-        return { 
+        return {
             "gameId": self.__game_id,
             "host": self.__host,
             "port": self.__port,

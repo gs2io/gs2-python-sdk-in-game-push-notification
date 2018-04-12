@@ -32,33 +32,59 @@ class CreateGameRequest(Gs2BasicRequest):
         super(CreateGameRequest, self).__init__(params)
         if params is None:
             self.__name = None
-            self.__description = None
-            self.__service_class = None
-            self.__offline_transfer = None
-            self.__notification_url = None
-            self.__notification_firebase_server_key = None
-            self.__create_certificate_trigger_script = None
-            self.__create_certificate_done_trigger_script = None
-            self.__delete_certificate_trigger_script = None
-            self.__delete_certificate_done_trigger_script = None
-            self.__publish_trigger_script = None
-            self.__publish_done_trigger_script = None
-            self.__set_firebase_token_trigger_script = None
-            self.__set_firebase_token_done_trigger_script = None
         else:
             self.set_name(params['name'] if 'name' in params.keys() else None)
+        if params is None:
+            self.__description = None
+        else:
             self.set_description(params['description'] if 'description' in params.keys() else None)
+        if params is None:
+            self.__service_class = None
+        else:
             self.set_service_class(params['serviceClass'] if 'serviceClass' in params.keys() else None)
+        if params is None:
+            self.__offline_transfer = None
+        else:
             self.set_offline_transfer(params['offlineTransfer'] if 'offlineTransfer' in params.keys() else None)
+        if params is None:
+            self.__notification_url = None
+        else:
             self.set_notification_url(params['notificationUrl'] if 'notificationUrl' in params.keys() else None)
+        if params is None:
+            self.__notification_firebase_server_key = None
+        else:
             self.set_notification_firebase_server_key(params['notificationFirebaseServerKey'] if 'notificationFirebaseServerKey' in params.keys() else None)
+        if params is None:
+            self.__create_certificate_trigger_script = None
+        else:
             self.set_create_certificate_trigger_script(params['createCertificateTriggerScript'] if 'createCertificateTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__create_certificate_done_trigger_script = None
+        else:
             self.set_create_certificate_done_trigger_script(params['createCertificateDoneTriggerScript'] if 'createCertificateDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__delete_certificate_trigger_script = None
+        else:
             self.set_delete_certificate_trigger_script(params['deleteCertificateTriggerScript'] if 'deleteCertificateTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__delete_certificate_done_trigger_script = None
+        else:
             self.set_delete_certificate_done_trigger_script(params['deleteCertificateDoneTriggerScript'] if 'deleteCertificateDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__publish_trigger_script = None
+        else:
             self.set_publish_trigger_script(params['publishTriggerScript'] if 'publishTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__publish_done_trigger_script = None
+        else:
             self.set_publish_done_trigger_script(params['publishDoneTriggerScript'] if 'publishDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__set_firebase_token_trigger_script = None
+        else:
             self.set_set_firebase_token_trigger_script(params['setFirebaseTokenTriggerScript'] if 'setFirebaseTokenTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__set_firebase_token_done_trigger_script = None
+        else:
             self.set_set_firebase_token_done_trigger_script(params['setFirebaseTokenDoneTriggerScript'] if 'setFirebaseTokenDoneTriggerScript' in params.keys() else None)
 
     def get_name(self):
@@ -75,6 +101,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param name: ゲーム名
         :type name: unicode
         """
+        if not isinstance(name, unicode):
+            raise TypeError(type(name))
         self.__name = name
 
     def with_name(self, name):
@@ -102,6 +130,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param description: 説明文
         :type description: unicode
         """
+        if not isinstance(description, unicode):
+            raise TypeError(type(description))
         self.__description = description
 
     def with_description(self, description):
@@ -129,6 +159,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param service_class: サービスクラス
         :type service_class: unicode
         """
+        if not isinstance(service_class, unicode):
+            raise TypeError(type(service_class))
         self.__service_class = service_class
 
     def with_service_class(self, service_class):
@@ -156,6 +188,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param offline_transfer: オフライン転送方式
         :type offline_transfer: unicode
         """
+        if not isinstance(offline_transfer, unicode):
+            raise TypeError(type(offline_transfer))
         self.__offline_transfer = offline_transfer
 
     def with_offline_transfer(self, offline_transfer):
@@ -183,6 +217,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param notification_url: オフライン転送先URL
         :type notification_url: unicode
         """
+        if not isinstance(notification_url, unicode):
+            raise TypeError(type(notification_url))
         self.__notification_url = notification_url
 
     def with_notification_url(self, notification_url):
@@ -210,6 +246,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param notification_firebase_server_key: Firebaseのサーバーキー
         :type notification_firebase_server_key: unicode
         """
+        if not isinstance(notification_firebase_server_key, unicode):
+            raise TypeError(type(notification_firebase_server_key))
         self.__notification_firebase_server_key = notification_firebase_server_key
 
     def with_notification_firebase_server_key(self, notification_firebase_server_key):
@@ -237,6 +275,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param create_certificate_trigger_script: クライアント証明書発行時 に実行されるGS2-Script
         :type create_certificate_trigger_script: unicode
         """
+        if not isinstance(create_certificate_trigger_script, unicode):
+            raise TypeError(type(create_certificate_trigger_script))
         self.__create_certificate_trigger_script = create_certificate_trigger_script
 
     def with_create_certificate_trigger_script(self, create_certificate_trigger_script):
@@ -264,6 +304,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param create_certificate_done_trigger_script: クライアント証明書発行完了時 に実行されるGS2-Script
         :type create_certificate_done_trigger_script: unicode
         """
+        if not isinstance(create_certificate_done_trigger_script, unicode):
+            raise TypeError(type(create_certificate_done_trigger_script))
         self.__create_certificate_done_trigger_script = create_certificate_done_trigger_script
 
     def with_create_certificate_done_trigger_script(self, create_certificate_done_trigger_script):
@@ -291,6 +333,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param delete_certificate_trigger_script: クライアント証明書削除時 に実行されるGS2-Script
         :type delete_certificate_trigger_script: unicode
         """
+        if not isinstance(delete_certificate_trigger_script, unicode):
+            raise TypeError(type(delete_certificate_trigger_script))
         self.__delete_certificate_trigger_script = delete_certificate_trigger_script
 
     def with_delete_certificate_trigger_script(self, delete_certificate_trigger_script):
@@ -318,6 +362,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param delete_certificate_done_trigger_script: クライアント証明書削除完了時 に実行されるGS2-Script
         :type delete_certificate_done_trigger_script: unicode
         """
+        if not isinstance(delete_certificate_done_trigger_script, unicode):
+            raise TypeError(type(delete_certificate_done_trigger_script))
         self.__delete_certificate_done_trigger_script = delete_certificate_done_trigger_script
 
     def with_delete_certificate_done_trigger_script(self, delete_certificate_done_trigger_script):
@@ -345,6 +391,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param publish_trigger_script: 通知送信時 に実行されるGS2-Script
         :type publish_trigger_script: unicode
         """
+        if not isinstance(publish_trigger_script, unicode):
+            raise TypeError(type(publish_trigger_script))
         self.__publish_trigger_script = publish_trigger_script
 
     def with_publish_trigger_script(self, publish_trigger_script):
@@ -372,6 +420,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param publish_done_trigger_script: 通知送信完了時 に実行されるGS2-Script
         :type publish_done_trigger_script: unicode
         """
+        if not isinstance(publish_done_trigger_script, unicode):
+            raise TypeError(type(publish_done_trigger_script))
         self.__publish_done_trigger_script = publish_done_trigger_script
 
     def with_publish_done_trigger_script(self, publish_done_trigger_script):
@@ -399,6 +449,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param set_firebase_token_trigger_script: Firebaseデバイストークン登録時 に実行されるGS2-Script
         :type set_firebase_token_trigger_script: unicode
         """
+        if not isinstance(set_firebase_token_trigger_script, unicode):
+            raise TypeError(type(set_firebase_token_trigger_script))
         self.__set_firebase_token_trigger_script = set_firebase_token_trigger_script
 
     def with_set_firebase_token_trigger_script(self, set_firebase_token_trigger_script):
@@ -426,6 +478,8 @@ class CreateGameRequest(Gs2BasicRequest):
         :param set_firebase_token_done_trigger_script: Firebaseデバイストークン登録完了時 に実行されるGS2-Script
         :type set_firebase_token_done_trigger_script: unicode
         """
+        if not isinstance(set_firebase_token_done_trigger_script, unicode):
+            raise TypeError(type(set_firebase_token_done_trigger_script))
         self.__set_firebase_token_done_trigger_script = set_firebase_token_done_trigger_script
 
     def with_set_firebase_token_done_trigger_script(self, set_firebase_token_done_trigger_script):

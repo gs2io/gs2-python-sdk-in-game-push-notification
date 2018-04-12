@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class PublishResponse(object):
 
     def __init__(self, params=None):
@@ -25,23 +26,6 @@ class PublishResponse(object):
             self.set_type(params['type'] if 'type' in params.keys() else None)
             self.set_subject(params['subject'] if 'subject' in params.keys() else None)
             self.set_body(params['body'] if 'body' in params.keys() else None)
-
-
-    def get_type(self):
-        """
-        通知に使用した方式を取得
-        :return: 通知に使用した方式
-        :rtype: unicode
-        """
-        return self.__type
-
-    def set_type(self, type):
-        """
-        通知に使用した方式を設定
-        :param type: 通知に使用した方式
-        :type type: unicode
-        """
-        self.__type = type
 
     def get_subject(self):
         """
@@ -75,8 +59,24 @@ class PublishResponse(object):
         """
         self.__body = body
 
+    def get_type(self):
+        """
+        通知に使用した方式を取得
+        :return: 通知に使用した方式
+        :rtype: unicode
+        """
+        return self.__type
+
+    def set_type(self, _type):
+        """
+        通知に使用した方式を設定
+        :param _type: 通知に使用した方式
+        :type _type: unicode
+        """
+        self.__type = _type
+
     def to_dict(self):
-        return { 
+        return {
             "type": self.__type,
             "subject": self.__subject,
             "body": self.__body,

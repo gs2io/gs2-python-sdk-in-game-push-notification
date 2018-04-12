@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class FirebaseToken(object):
 
     def __init__(self, params=None):
@@ -23,7 +24,6 @@ class FirebaseToken(object):
         else:
             self.set_user_id(params['userId'] if 'userId' in params.keys() else None)
             self.set_token(params['token'] if 'token' in params.keys() else None)
-
 
     def get_user_id(self):
         """
@@ -58,7 +58,7 @@ class FirebaseToken(object):
         self.__token = token
 
     def to_dict(self):
-        return { 
+        return {
             "userId": self.__user_id,
             "token": self.__token,
         }

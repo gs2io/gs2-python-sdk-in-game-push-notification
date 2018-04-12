@@ -49,6 +49,8 @@ class GetGameStatusRequest(Gs2BasicRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
+        if not isinstance(game_name, unicode):
+            raise TypeError(type(game_name))
         self.__game_name = game_name
 
     def with_game_name(self, game_name):
