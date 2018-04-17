@@ -51,7 +51,7 @@ class SetFirebaseTokenRequest(Gs2UserRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
-        if game_name and not isinstance(game_name, unicode):
+        if _game_name and not (isinstance(_game_name, str) or isinstance(_game_name, unicode)):
             raise TypeError(type(game_name))
         self.__game_name = game_name
 
@@ -80,7 +80,7 @@ class SetFirebaseTokenRequest(Gs2UserRequest):
         :param token: デバイストークン
         :type token: unicode
         """
-        if token and not isinstance(token, unicode):
+        if _token and not (isinstance(_token, str) or isinstance(_token, unicode)):
             raise TypeError(type(token))
         self.__token = token
 

@@ -49,7 +49,7 @@ class GetWebSocketHostRequest(Gs2UserRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
-        if game_name and not isinstance(game_name, unicode):
+        if _game_name and not (isinstance(_game_name, str) or isinstance(_game_name, unicode)):
             raise TypeError(type(game_name))
         self.__game_name = game_name
 

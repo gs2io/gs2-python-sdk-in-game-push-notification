@@ -49,7 +49,7 @@ class GetGameRequest(Gs2BasicRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
-        if game_name and not isinstance(game_name, unicode):
+        if game_name and not (isinstance(game_name, str) or isinstance(game_name, unicode)):
             raise TypeError(type(game_name))
         self.__game_name = game_name
 
