@@ -16,6 +16,7 @@
 
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
+from aws_sdk_for_serverless.common import url_encoder
 
 
 class Gs2InGamePushNotificationClient(AbstractGs2Client):
@@ -120,7 +121,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DeleteGameRequest import DeleteGameRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "",
             service=self.ENDPOINT,
             component=DeleteGameRequest.Constant.MODULE,
             target_function=DeleteGameRequest.Constant.FUNCTION,
@@ -200,7 +201,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
 
         from gs2_in_game_push_notification_client.control.GetGameResult import GetGameResult
         return GetGameResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "",
             service=self.ENDPOINT,
             component=GetGameRequest.Constant.MODULE,
             target_function=GetGameRequest.Constant.FUNCTION,
@@ -226,7 +227,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
 
         from gs2_in_game_push_notification_client.control.GetGameStatusResult import GetGameStatusResult
         return GetGameStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/status",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/status",
             service=self.ENDPOINT,
             component=GetGameStatusRequest.Constant.MODULE,
             target_function=GetGameStatusRequest.Constant.FUNCTION,
@@ -276,7 +277,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         from gs2_in_game_push_notification_client.control.UpdateGameRequest import UpdateGameRequest
         from gs2_in_game_push_notification_client.control.UpdateGameResult import UpdateGameResult
         return UpdateGameResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "",
             service=self.ENDPOINT,
             component=UpdateGameRequest.Constant.MODULE,
             target_function=UpdateGameRequest.Constant.FUNCTION,
@@ -303,7 +304,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
 
         from gs2_in_game_push_notification_client.control.GetMqttHostResult import GetMqttHostResult
         return GetMqttHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/mqtt",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/server/mqtt",
             service=self.ENDPOINT,
             component=GetMqttHostRequest.Constant.MODULE,
             target_function=GetMqttHostRequest.Constant.FUNCTION,
@@ -330,7 +331,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
 
         from gs2_in_game_push_notification_client.control.GetWebSocketHostResult import GetWebSocketHostResult
         return GetWebSocketHostResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/server/webSocket",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/server/webSocket",
             service=self.ENDPOINT,
             component=GetWebSocketHostRequest.Constant.MODULE,
             target_function=GetWebSocketHostRequest.Constant.FUNCTION,
@@ -364,7 +365,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         from gs2_in_game_push_notification_client.control.PublishRequest import PublishRequest
         from gs2_in_game_push_notification_client.control.PublishResult import PublishResult
         return PublishResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user/" + str(("null" if request.get_user_id() is None or request.get_user_id() == "" else request.get_user_id())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/user/" + str(("null" if request.get_user_id() is None or request.get_user_id() == "" else url_encoder.encode(request.get_user_id()))) + "",
             service=self.ENDPOINT,
             component=PublishRequest.Constant.MODULE,
             target_function=PublishRequest.Constant.FUNCTION,
@@ -398,7 +399,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         from gs2_in_game_push_notification_client.control.CreateCertificateRequest import CreateCertificateRequest
         from gs2_in_game_push_notification_client.control.CreateCertificateResult import CreateCertificateResult
         return CreateCertificateResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/certificate",
             service=self.ENDPOINT,
             component=CreateCertificateRequest.Constant.MODULE,
             target_function=CreateCertificateRequest.Constant.FUNCTION,
@@ -423,7 +424,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_in_game_push_notification_client.control.DeleteCertificateRequest import DeleteCertificateRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/certificate",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/certificate",
             service=self.ENDPOINT,
             component=DeleteCertificateRequest.Constant.MODULE,
             target_function=DeleteCertificateRequest.Constant.FUNCTION,
@@ -451,7 +452,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
 
         from gs2_in_game_push_notification_client.control.DescribeStatusResult import DescribeStatusResult
         return DescribeStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/user",
             service=self.ENDPOINT,
             component=DescribeStatusRequest.Constant.MODULE,
             target_function=DescribeStatusRequest.Constant.FUNCTION,
@@ -481,7 +482,7 @@ class Gs2InGamePushNotificationClient(AbstractGs2Client):
         from gs2_in_game_push_notification_client.control.SetFirebaseTokenRequest import SetFirebaseTokenRequest
         from gs2_in_game_push_notification_client.control.SetFirebaseTokenResult import SetFirebaseTokenResult
         return SetFirebaseTokenResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else request.get_game_name())) + "/user",
+            url=Gs2Constant.ENDPOINT_HOST + "/game/" + str(("null" if request.get_game_name() is None or request.get_game_name() == "" else url_encoder.encode(request.get_game_name()))) + "/user",
             service=self.ENDPOINT,
             component=SetFirebaseTokenRequest.Constant.MODULE,
             target_function=SetFirebaseTokenRequest.Constant.FUNCTION,
