@@ -26,7 +26,6 @@ class SetFirebaseTokenResult(object):
         :type response: dict
         """
         self.__item = FirebaseToken(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-
     def get_item(self):
         """
         Firebase 通知トークンを取得
@@ -34,6 +33,12 @@ class SetFirebaseTokenResult(object):
         :rtype: FirebaseToken
         """
         return self.__item
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(SetFirebaseTokenResult, self).__getitem__(key)
 
     def to_dict(self):
         """

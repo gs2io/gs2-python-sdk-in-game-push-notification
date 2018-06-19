@@ -75,6 +75,12 @@ class PublishResponse(object):
         """
         self.__type = _type
 
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(PublishResponse, self).__getitem__(key)
+
     def to_dict(self):
         return {
             "type": self.__type,

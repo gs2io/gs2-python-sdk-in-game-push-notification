@@ -93,6 +93,12 @@ class MqttHost(object):
         """
         self.__root_certificate = root_certificate
 
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(MqttHost, self).__getitem__(key)
+
     def to_dict(self):
         return {
             "gameId": self.__game_id,

@@ -345,6 +345,12 @@ class Game(object):
         """
         self.__update_at = update_at
 
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(Game, self).__getitem__(key)
+
     def to_dict(self):
         return {
             "gameId": self.__game_id,

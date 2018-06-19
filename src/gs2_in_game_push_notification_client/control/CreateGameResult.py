@@ -26,7 +26,6 @@ class CreateGameResult(object):
         :type response: dict
         """
         self.__item = Game(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-
     def get_item(self):
         """
         ゲームを取得
@@ -34,6 +33,12 @@ class CreateGameResult(object):
         :rtype: Game
         """
         return self.__item
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(CreateGameResult, self).__getitem__(key)
 
     def to_dict(self):
         """
