@@ -69,7 +69,7 @@ class PublishRequest(Gs2BasicRequest):
         :param game_name: ゲームの名前
         :type game_name: unicode
         """
-        if game_name and not (isinstance(game_name, str) or isinstance(game_name, unicode)):
+        if game_name is not None and not (isinstance(game_name, str) or isinstance(game_name, unicode)):
             raise TypeError(type(game_name))
         self.__game_name = game_name
 
@@ -98,7 +98,7 @@ class PublishRequest(Gs2BasicRequest):
         :param user_id: 通知の送信先ユーザID
         :type user_id: unicode
         """
-        if user_id and not (isinstance(user_id, str) or isinstance(user_id, unicode)):
+        if user_id is not None and not (isinstance(user_id, str) or isinstance(user_id, unicode)):
             raise TypeError(type(user_id))
         self.__user_id = user_id
 
@@ -127,7 +127,7 @@ class PublishRequest(Gs2BasicRequest):
         :param subject: 件名
         :type subject: unicode
         """
-        if subject and not (isinstance(subject, str) or isinstance(subject, unicode)):
+        if subject is not None and not (isinstance(subject, str) or isinstance(subject, unicode)):
             raise TypeError(type(subject))
         self.__subject = subject
 
@@ -156,7 +156,7 @@ class PublishRequest(Gs2BasicRequest):
         :param body: 本文
         :type body: unicode
         """
-        if body and not (isinstance(body, str) or isinstance(body, unicode)):
+        if body is not None and not (isinstance(body, str) or isinstance(body, unicode)):
             raise TypeError(type(body))
         self.__body = body
 
@@ -185,7 +185,7 @@ class PublishRequest(Gs2BasicRequest):
         :param enable_offline_transfer: 対象ユーザがオフラインの場合に転送を実行するか
         :type enable_offline_transfer: bool
         """
-        if enable_offline_transfer and not isinstance(enable_offline_transfer, bool):
+        if enable_offline_transfer is not None and not isinstance(enable_offline_transfer, bool):
             raise TypeError(type(enable_offline_transfer))
         self.__enable_offline_transfer = enable_offline_transfer
 
@@ -214,7 +214,7 @@ class PublishRequest(Gs2BasicRequest):
         :param offline_transfer_sound: Firebaseへの転送時に使用する通知音ファイル名
         :type offline_transfer_sound: unicode
         """
-        if offline_transfer_sound and not (isinstance(offline_transfer_sound, str) or isinstance(offline_transfer_sound, unicode)):
+        if offline_transfer_sound is not None and not (isinstance(offline_transfer_sound, str) or isinstance(offline_transfer_sound, unicode)):
             raise TypeError(type(offline_transfer_sound))
         self.__offline_transfer_sound = offline_transfer_sound
 

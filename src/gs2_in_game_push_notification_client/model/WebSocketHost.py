@@ -21,9 +21,11 @@ class WebSocketHost(object):
         if params is None:
             self.__game_id = None
             self.__endpoint = None
+            self.__root_certificate = None
         else:
             self.set_game_id(params['gameId'] if 'gameId' in params.keys() else None)
             self.set_endpoint(params['endpoint'] if 'endpoint' in params.keys() else None)
+            self.set_root_certificate(params['rootCertificate'] if 'rootCertificate' in params.keys() else None)
 
     def get_game_id(self):
         """
@@ -57,6 +59,22 @@ class WebSocketHost(object):
         """
         self.__endpoint = endpoint
 
+    def get_root_certificate(self):
+        """
+        ルート証明書を取得
+        :return: ルート証明書
+        :rtype: unicode
+        """
+        return self.__root_certificate
+
+    def set_root_certificate(self, root_certificate):
+        """
+        ルート証明書を設定
+        :param root_certificate: ルート証明書
+        :type root_certificate: unicode
+        """
+        self.__root_certificate = root_certificate
+
     def __getitem__(self, key):
         items = self.to_dict()
         if key in items.keys():
@@ -67,4 +85,5 @@ class WebSocketHost(object):
         return {
             "gameId": self.__game_id,
             "endpoint": self.__endpoint,
+            "rootCertificate": self.__root_certificate,
         }
